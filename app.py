@@ -364,6 +364,19 @@ with st.sidebar:
     source = st.text_input(
         "YouTube URL", placeholder="https://youtube.com/watch?v=..."
     )
+
+    # Safe check to indicate if YouTube cookies are configured
+    has_cookies = bool(os.getenv("YOUTUBE_COOKIES"))
+    if not has_cookies:
+      try:
+        has_cookies = bool(st.secrets.get("YOUTUBE_COOKIES"))
+      except Exception:
+        has_cookies = False
+
+    if has_cookies:
+      st.caption("🔑 YouTube cookies loaded")
+    else:
+      st.caption("ℹ️ Using caption fallback if YouTube blocks audio download")
   else:
     uploaded_file = st.file_uploader(
         "Upload Audio/Video",
@@ -431,7 +444,10 @@ if run_btn:
       update_step("audio", "done")
 
       update_step("transcript", "active")
-      transcript = transcribe_all(chunks, language)
+      if isinstance(chunks, str) and chunks.startswith("DIRECT_TRANSCRIPT::"):
+        transcript = chunks.replace("DIRECT_TRANSCRIPT::", "", 1)
+      else:
+        transcript = transcribe_all(chunks, language)
       update_step("transcript", "done")
 
       update_step("title", "active")
