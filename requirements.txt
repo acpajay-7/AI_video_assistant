@@ -1,25 +1,16 @@
-# Core LangChain & LCEL
+﻿streamlit>=1.38.0
+python-dotenv>=1.0.0
 langchain>=0.3.0
 langchain-core>=0.3.0
 langchain-community>=0.3.0
 langchain-text-splitters>=0.3.0
-
-# LLM Providers (Groq, Mistral, Google Gemini)
 langchain-groq>=0.2.0
 langchain-mistralai>=0.2.0
 langchain-google-genai>=2.0.0
-
-# Vector Database & Local Embeddings
 langchain-chroma>=0.1.4
 chromadb>=0.5.0
 sentence-transformers>=3.0.0
-
-# Audio Downloading, Processing & Transcription
 yt-dlp>=2024.10.0
 pydub>=0.25.1
 openai-whisper>=20240930
 requests>=2.31.0
-
-# Web UI & Environment
-streamlit>=1.38.0
-python-dotenv>=1.0.0
