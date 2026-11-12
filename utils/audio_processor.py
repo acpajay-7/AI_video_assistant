@@ -35,9 +35,11 @@ def download_youtube_audio(url: str) -> str:
           "preferredcodec": "wav",
           "preferredquality": "192",
       }],
+      "js_runtimes": {"node": {}},
       "extractor_args": {
-          "youtube": {"player_client": ["android", "web"]},
+          "youtube": {"player_client": ["mweb", "web"]},
       },
+      "nocheckcertificate": True,
       "quiet": True,
   }
 
